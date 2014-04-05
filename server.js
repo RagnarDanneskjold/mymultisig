@@ -40,7 +40,6 @@ function start(dispatch, handlers, staticfiles) {
 	}
 
 	console.log("Starting server...");
-	backend.
 	http.createServer(onRequest).listen(8888);
 	console.log("Server listening on localhost:8888");
 }
