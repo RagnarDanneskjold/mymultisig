@@ -71,22 +71,19 @@
             </div>
             <div class="panel-body">
 
-                        <form method="POST"
-                            action="http://mymultisig:81/home/generate.php">
-                            <u>Welcome to MyMultiSig.</u><br> To generate a new wallet just enter email address of three secure wallet holders and click send. <br>
-                            Each holder will be sent an email to choose a password. <br>
-                            <br> Email 1: <input type="email" name="Email1" size="15" />
-                            <br> Email 2: <input type="email" name="Email2" size="15" />
-                            <br> Email 3: <input type="email" name="Email3" size="15" />
-                            <br>
-
-                            <p>
-                                <input type="submit" value="Send Invites" />
-                            </p>
-
-                            <img src="http://cartoon-animals.disneyandcartoons.com/_/rsrc/1326187643956/cute-cartoon-cats/Cute-Cartoon-Black-Cat_2.png?height=320&width=256" alt="some_text">
-
-                        </form>
+            <form method="POST" action="http://mymultisig:81/home/generate.php">
+              <u>Welcome to MyMultiSig.</u><br>
+              To make a transaction please enter your wallet address, amount to transact and destination. <br>
+              Each secure wallet holder will receive an email to confirm the transaction before it is pushed to the block chain.
+            
+              <br></br>
+            Your Wallet Address: <input type="text" name="Email1" size="15" /><br />
+                Destination Address: <input type="text" name="Email2" size="15" /><br />
+                Amount: <input type="integer" name="Email3" size="15" />BTC<br />
+            
+            <p><input type="submit" value="Process" /></p>
+              
+            </form>
 
 
                     </div>
