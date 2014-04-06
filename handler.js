@@ -26,7 +26,7 @@ function onCreate(request, response) {
 		var POST = querystring.parse(posted);
 		var emailArray = POST['email'];
 		for(var i = 0; i < 3; ++i)
-			mailman.sendJoin(emailArray[i]);
+			mailman.sendRegistrationEmail(emailArray[i]);
 
 		// View
 		writeHtml(response, buildHtml('mailed.html'));
@@ -44,6 +44,10 @@ function onInitTx(request, response) {
 	writeHtml(response, buildHtml('inittx.html', output))
 }
 
+function onConfirmTx(request, response) {
+
+}
+
 function onSignTx(request, response) {
 	output = {'text': 'data to signtx.html'};
 	writeHtml(response, buildHtml('signtx.html', output))
@@ -53,4 +57,5 @@ function onSignTx(request, response) {
 exports.onCreate = onCreate;
 exports.onRegister= onRegister;
 exports.onInitTx= onInitTx;
+exports.onConfirmTx= onConfirmTx;
 exports.onSignTx= onSignTx;

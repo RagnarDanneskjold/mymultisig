@@ -8,6 +8,8 @@ dispatchers = {
 	'/create':   handler.onCreate,
 	'/register': handler.onRegister,
 	'/inittx':   handler.onInitTx,
-	'/signtx':   handler.onSignTx};
+	'/confirmtx': handler.onConfirmTx,
+	'/signtx':   handler.onSignTx
+};
 	
 server.start(dispatcher.dispatch, dispatchers, staticfiles);
