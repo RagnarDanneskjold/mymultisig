@@ -23,14 +23,19 @@ function onCreate(request, response) {
 }
 
 function onRegister(request, response) {
+	output = {'text': 'text to register html'};
+	writeHtml(response, buildHtml('register.html', output))
 
 }
 
 function onInitTx(request, response) {
-
+	output = {'text': 'data to inittx'};
+	writeHtml(response, buildHtml('inittx.html', output))
 }
 
 function onSignTx(request, response) {
+	output = {'text': 'data to signtx.html'};
+	writeHtml(response, buildHtml('signtx.html', output))
 
 }
 
