@@ -4,6 +4,11 @@ var nodestatic = require('node-static');
 var staticfiles = new(nodestatic.Server)('./static', {cache: 600});
 var handler = require('./handler');
 
-dispatchers = {"/valid": handler.onValid };
+dispatchers = {
+	'/create':   handler.onCreate,
+	'/register': handler.onRegister,
+	'/inittx':   handler.onInitTx,
+	'/signtx':   handler.onSignTx
+};
 
 server.start(dispatcher.dispatch, dispatchers, staticfiles);

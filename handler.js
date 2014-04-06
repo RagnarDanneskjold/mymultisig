@@ -2,7 +2,7 @@ var url = require('url');
 var dot = require('dot');
 var fs = require('fs');
 var querystring = require('querystring');
-var bitcore = require('bitcore');
+var storage = require('./storage');
 
 function writeHtml(response, html) {
 	response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -11,30 +11,30 @@ function writeHtml(response, html) {
 }
 
 function buildHtml(f, output) {
-	var data = fs.readFileSync("./templates/" + f, "utf-8");
+	var data = fs.readFileSync('./templates/' + f, 'utf-8');
 	var t = dot.template(data);
 	return t(output);
 }
 
-// Callbacks
+// Controllers
 
-function onValid(request, response) {
-	var q = url.parse(request.url).query
-	console.log("onValid: %s", q);
+function onCreate(request, response) {
 
-	var arg = querystring.parse(q);
-	var Address = bitcore.Address;
-	var a = new Address(arg["address"]);
-
-	output = {};
-
-	if(a.isValid())
-		output["valid"] = "true";
-	else
-		output["valid"] = "false";
-
-	// valid.html is a template
-	writeHtml(response, buildHtml("valid.html", output));
 }
 
-exports.onValid= onValid;
+function onRegister(request, response) {
+
+}
+
+function onInitTx(request, response) {
+
+}
+
+function onSignTx(request, response) {
+
+}
+
+exports.onCreate = onCreate;
+exports.onRegister= onRegister;
+exports.onInitTx= onInitTx;
+exports.onSignTx= onSignTx;
