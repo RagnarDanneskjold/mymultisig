@@ -3,6 +3,7 @@ var dot = require('dot');
 var fs = require('fs');
 var querystring = require('querystring');
 var storage = require('./storage');
+var mailman= require('./mailman');
 
 function writeHtml(response, html) {
 	response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -19,7 +20,17 @@ function buildHtml(f, output) {
 // Controllers
 
 function onCreate(request, response) {
+	var posted = '';
+	request.on('data', function(data) { posted += data });
+	request.on('end', function() {
+		var POST = querystring.parse(posted);
+		var emailArray = POST['email'];
+		for(var i = 0; i < 3; ++i)
+			mailman.sendJoin(emailArray[i]);
 
+		// View
+		writeHtml(response, buildHtml('mailed.html'));
+	});
 }
 
 function onRegister(request, response) {
