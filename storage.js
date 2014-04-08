@@ -14,7 +14,7 @@ exports.createNewUser = function(email, password) {
 		console.log("INSERT %s %s", email, hash);
 
 		stmt.finalize();
-		});
+	});
 }
 
 exports.isPasswordValid = function(email, password, callback) {
