@@ -19,43 +19,50 @@ function buildHtml(f, output) {
 
 // Controllers
 
-function onCreate(request, response) {
+exports.onCreate = function(request, response) {
 	var posted = '';
 	request.on('data', function(data) { posted += data });
 	request.on('end', function() {
 		var POST = querystring.parse(posted);
-		var emailArray = POST['email'];
-		for(var i = 0; i < 3; ++i)
-			mailman.sendRegistrationEmail(emailArray[i]);
 
-		// View
+		var email = POST['email'];
+		for(var i = 0; i < 3; ++i)
+			mailman.sendRegistrationEmail(email[i]);
+
 		writeHtml(response, buildHtml('mailed.html'));
 	});
 }
 
-function onRegister(request, response) {
-	output = {'text': 'text to register html'};
-	writeHtml(response, buildHtml('register.html', output))
-
+exports.onRegister = function(request, response) {
+	var query = url.parse(request.url).query;
+	var GET = querystring.parse(query);
+	writeHtml(response, buildHtml('register.html', {"email": GET["email"]}));
 }
 
-function onInitTx(request, response) {
+exports.onSave = function(request, response) {
+	var posted = '';
+	request.on('data', function(data) { posted += data });
+	request.on('end', function() {
+		var POST = querystring.parse(posted);
+
+		var email = POST['email'];
+		var password = POST['password'];
+		storage.createNewUser(email, password);
+
+		writeHtml(response, buildHtml('registered.html'));
+	});
+}
+
+exports.onInitTx = function(request, response) {
 	output = {'text': 'data to inittx'};
 	writeHtml(response, buildHtml('inittx.html', output))
 }
 
-function onConfirmTx(request, response) {
+exports.onConfirmTx = function(request, response) {
 
 }
 
-function onSignTx(request, response) {
+exports.onSignTx= function(request, response) {
 	output = {'text': 'data to signtx.html'};
 	writeHtml(response, buildHtml('signtx.html', output))
-
 }
-
-exports.onCreate = onCreate;
-exports.onRegister= onRegister;
-exports.onInitTx= onInitTx;
-exports.onConfirmTx= onConfirmTx;
-exports.onSignTx= onSignTx;

@@ -11,7 +11,7 @@ function start(dispatch, handlers, staticfiles) {
 			if( href == "/" )
 				href = "/index.html";
 
-			console.log("Request [" + request.connection.remoteAddress + "]:" + href );
+			console.log("Request [" + request.connection.remoteAddress + "]: " + href );
 
 			if(href.indexOf(".html") > 0 || href.indexOf(".css") > 0 ||
 			   href.indexOf(".ico") > 0 || href.indexOf(".js") > 0)

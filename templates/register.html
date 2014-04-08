@@ -71,14 +71,15 @@
             </div>
             <div class="panel-body">
 
-            <form method="POST" action="http://mymultisig:81/home/generate.php">
+            <form method="POST" action="/save">
               <u>Welcome to MyMultiSig.</u><br>
               Congratulations! You have been selected as a multisignature for wallet address:  <br>
               Please chooose a password and click submit. <br></br>
               Whenever a transaction is attempted your approval will be required via password confirmation before the transaction is sent to the block chain. 
             
             <br></br>
-              Your Password: <input type="password" name="EncryptPassword" size="15" /><br />
+                <input type="hidden" name="email" value="{{= it.email }}" />
+              Your Password: <input type="password" name="password" size="20" /><br />
                 <p><input type="submit" value="Submit" /></p>
             
             </form>

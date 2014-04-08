@@ -5,11 +5,12 @@ var staticfiles = new(nodestatic.Server)('./static', {cache: 600});
 var handler = require('./handler');
 
 dispatchers = {
-	'/create':   handler.onCreate,
+	'/create': handler.onCreate,
 	'/register': handler.onRegister,
-	'/inittx':   handler.onInitTx,
+	'/save': handler.onSave,
+	'/inittx': handler.onInitTx,
 	'/confirmtx': handler.onConfirmTx,
-	'/signtx':   handler.onSignTx
+	'/signtx': handler.onSignTx
 };
 	
 server.start(dispatcher.dispatch, dispatchers, staticfiles);
